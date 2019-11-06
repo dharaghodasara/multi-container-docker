@@ -14,6 +14,7 @@ after_success:
   - docker build -t dharaghodasara/multi-server ./server
   - docker build -t dharaghodasara/multi-worker ./worker
 
+  
 # take those images and put it in docker hub 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push dharaghodasara/multi-client

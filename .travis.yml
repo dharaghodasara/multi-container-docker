@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t dharaghodasara/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t dharag/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true dharaghodasara/react-test npm test 
+  - docker run -e CI=true dharag/react-test npm test 
 
 after_success:
-  - docker build -t dharaghodasara/multi-client ./client
-  - docker build -t dharaghodasara/multi-nginx ./nginx
-  - docker build -t dharaghodasara/multi-server ./server
-  - docker build -t dharaghodasara/multi-worker ./worker
+  - docker build -t dharag/multi-client ./client
+  - docker build -t dharag/multi-nginx ./nginx
+  - docker build -t dharag/multi-server ./server
+  - docker build -t dharag/multi-worker ./worker
 
   
 # take those images and put it in docker hub 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push dharaghodasara/multi-client
-  - docker push dharaghodasara/multi-nginx
-  - docker push dharaghodasara/multi-server
-  - docker push dharaghodasara/multi-worker
+  - docker push dharag/multi-client
+  - docker push dharag/multi-nginx
+  - docker push dharag/multi-server
+  - docker push dharag/multi-worker
